@@ -1,9 +1,9 @@
 class Tapestry {
   constructor(){
     this.lineCount = 36;
-    this.oscCount = 6;
+    this.oscCount = 5;
 
-    this.innerRad = 100;
+    this.innerRad = 150;
     this.outerRad = 700;
 
     textSize(pgTextSize);
@@ -31,6 +31,7 @@ class Tapestry {
     this.ranRot = [];
 
     this.justifyMode = 0;
+    this.letterSpacer = 1.0;
 
     this.setText();
   }
@@ -38,7 +39,7 @@ class Tapestry {
   setText(){
     textSize(pgTextSize);
 
-    this.lineDistCore = textWidth("O") * 0.8;
+    this.lineDistCore = textWidth("O") * this.letterSpacer;
     this.inputTextLine = [];
 
     for(var m = 0; m < this.lineCount; m++){

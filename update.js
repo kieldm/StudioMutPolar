@@ -45,6 +45,11 @@ function setLineCount(val){
   coreTap.setText();
 }
 
+function setLetterSpacer(val){
+  coreTap.letterSpacer = map(val, 0, 100, 0.7, 2.0);
+  coreTap.setText();
+}
+
 function setOscCount(val){
   var oscFactor = map(val, 0, 100, 0.01, 1);
   coreTap.oscCount = round(coreTap.lineCount * oscFactor);

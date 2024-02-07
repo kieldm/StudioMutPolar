@@ -58,7 +58,12 @@
           <div class="coupling_label"><h3>LineCount</h3></div>
           <input type="range" min="0" max="100" value="50" id="lineCount" oninput="setLineCount(this.value)">
         </div>
-        
+
+        <div class="coupling1">
+          <div class="coupling_label"><h3>LetterSpace</h3></div>
+          <input type="range" min="0" max="100" value="10" id="letterSpacer" oninput="setLetterSpacer(this.value)">
+        </div>
+
         <div class="coupling1">
           <div class="coupling_label"><h3>Spacing</h3></div>
           <input type="range" min="0" max="100" value="0" id="lineSpace" oninput="setLineSpace(this.value)">
@@ -66,12 +71,12 @@
 
         <div class="coupling1">
           <div class="coupling_label"><h3>OscCount</h3></div>
-          <input type="range" min="0" max="100" value="20" id="oscCount" oninput="setOscCount(this.value)">
+          <input type="range" min="0" max="100" value="15" id="oscCount" oninput="setOscCount(this.value)">
         </div>
 
         <div class="coupling1">
           <div class="coupling_label"><h3>InnerRad</h3></div>
-          <input type="range" min="0" max="100" value="15" id="innerRad" oninput="setInnerRad(this.value)">
+          <input type="range" min="0" max="100" value="20" id="innerRad" oninput="setInnerRad(this.value)">
         </div>
         
         <select name="fontChange" id="fontChange" onchange="setJustify(this.value)">

@@ -1,9 +1,9 @@
 class Tapestry {
   constructor(){
     this.lineCount = 36;
-    this.oscCount = 8;
+    this.oscCount = 6;
 
-    this.innerRad = 50;
+    this.innerRad = 100;
     this.outerRad = 700;
 
     textSize(pgTextSize);

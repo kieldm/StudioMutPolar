@@ -2,7 +2,7 @@ var bkgdColor, foreColor;
 var tFont = [];
 var pgTextSize = 22;
 var inputText;
-var starterText = "MILAN";
+var starterText = "INEQUALITIES";
 // var starterText = "LONG\nDAYS\nAND\nSHORTER\nNIGHTS";
 
 var coreTap;

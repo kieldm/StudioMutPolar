@@ -21,7 +21,8 @@ var delayCenter = 0;
 
 function preload(){
   // tFont[0] = loadFont("resources/NeueMontreal-Bold.ttf");
-  tFont[0] = loadFont("resources/NeueMontreal-Regular.ttf");
+  // tFont[0] = loadFont("resources/NeueMontreal-Regular.ttf");
+  tFont[0] = loadFont("resources/RiformaLL-Bold.otf");
   // tFont[0] = loadFont("resources/EditorialNew-Regular.otf");
 }
 

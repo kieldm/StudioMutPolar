@@ -30,7 +30,7 @@ class Tapestry {
     this.ranRotTarget = [];
     this.ranRot = [];
 
-    this.justifyMode = 0;
+    this.justifyMode = 3;
     this.letterSpacer = 1.0;
 
     this.setText();

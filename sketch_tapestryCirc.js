@@ -61,7 +61,7 @@ function draw(){
   pop();
 
   if(exportSVGon){
-    save("decodingBio.svg");
+    save("STGpolar_SM.svg");
     exportSVGon = false;
 
     window.location.reload();

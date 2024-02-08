@@ -19,6 +19,8 @@ var spinOn = true;
 
 var delayCenter = 0;
 
+var exportSVGon = false;
+
 function preload(){
   // tFont[0] = loadFont("resources/NeueMontreal-Bold.ttf");
   // tFont[0] = loadFont("resources/NeueMontreal-Regular.ttf");
@@ -58,7 +60,12 @@ function draw(){
     coreTap.run();
   pop();
 
-  // text(round(frameRate()), 50, 50);
+  if(exportSVGon){
+    save("decodingBio.svg");
+    exportSVGon = false;
+
+    window.location.reload();
+  }
 }
 
 function windowResized(){

@@ -4,7 +4,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>STG _v.Polar</title>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
+  <script src="https://unpkg.com/p5.js-svg@1.5.1"></script>
 
   <link rel="stylesheet" href="style.css">
 
@@ -184,7 +186,14 @@
           <label for="mousePop">Mouse Pop</label>
           <input type="checkbox" id="mousePop" name="mousePop" onclick="toggleMousePop()" checked>
         </div> -->
-      </div> 
+      </div>
+      <button type="button" class="collapsible"><h1>EXPORT</h1></button>
+      <div class="content">
+        <div class="coupling1">
+          <button type="button" class="saveSVG" onclick="runSVGsave()">Export SVG</button>
+        </div>
+      </div>
+
     </div>
   </div>
   

@@ -100,3 +100,8 @@ function setDelayCenter(val){
   delayCenter = val;
   coreTap.setText();
 }
+
+function runSVGsave(){
+  createCanvas(windowWidth,windowHeight, SVG);
+  exportSVGon = true;
+}

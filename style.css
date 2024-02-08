@@ -63,7 +63,9 @@ canvas{
   flex-direction:row;
   background-color:#f1f1f1
 }
-
+#scrubSec{
+  display:none;
+}
 .collapsible:after{
   margin-top:-25px;
   content:'\2193';

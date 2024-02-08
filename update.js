@@ -80,6 +80,16 @@ function setAccelType(val){
 
 function toggleAnimateOn(){
   animateOn = !animateOn;
+
+  if(animateOn){
+    document.getElementById('scrubSec').style.display = "none";
+  } else {
+    document.getElementById('scrubSec').style.display = "flex";
+  }
+}
+
+function setScrub(val){
+  scrubTicker = map(val, 0, 100, -loopLength, loopLength);
 }
 
 function toggleSpinOn(){

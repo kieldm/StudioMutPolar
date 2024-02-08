@@ -23,6 +23,7 @@ class Tapestry {
     this.animWindow = 90;
     this.pauseWindow = 70;
     this.ticker = [];
+    this.scrubDelay = [];
 
     this.centerYtarget = 0;
     this.centerY = [];
@@ -78,6 +79,7 @@ class Tapestry {
       this.lineAngMax[m] = TWO_PI/this.inputTextLine[m].length;
 
       this.ticker[m] = [];
+      this.scrubDelay[m] = [];
       this.lineAng[m] = [];
       this.centerY[m] = []
       for(var n = 0; n < this.inputTextLine[m].length; n++){
@@ -115,6 +117,7 @@ class Tapestry {
         var nDelay = nDist * this.nDelay;
 
         this.ticker[m][n] = mDelay + nDelay;
+        this.scrubDelay[m][n] = this.ticker[m][n];
         this.lineAng[m][n] = 0;
         this.centerY[m][n] = 0;
       }
@@ -122,64 +125,65 @@ class Tapestry {
     
     // this.centerYtarget = this.outerRad/2;
     this.centerYtarget = 0;
+
+    loopLength = (this.animWindow + this.pauseWindow) + (this.oscCount * inputText.length * abs(this.nDelay)) + this.lineCount * abs(this.mDelay);
+    print(loopLength);
   }
 
   run(){
-    if(animateOn){
-      this.updateMotion();
-    } else {
-      this.updateStatic();
-    }
+    this.updateMotion();
     this.display();
   }
 
-  updateStatic(){
-    for(var m = 0; m < this.lineCount; m++){
-      this.lineFullAng[m] = 0;
-      for(var n = 0; n < this.inputTextLine[m].length; n++){
-        this.lineAng[m][n] = this.lineAngMax[m];
-        this.centerY[m][n] = 0;
+  // updateStatic(){
+  //   for(var m = 0; m < this.lineCount; m++){
+  //     this.lineFullAng[m] = 0;
+  //     for(var n = 0; n < this.inputTextLine[m].length; n++){
+  //       this.lineAng[m][n] = this.lineAngMax[m];
+  //       this.centerY[m][n] = 0;
 
-        if(n < this.inputTextLine[m].length - 1){
-          this.lineFullAng[m] += this.lineAng[m][n];
-        }
-      }
-      this.ranRot[m] = 0;
-    }
-  }
+  //       if(n < this.inputTextLine[m].length - 1){
+  //         this.lineFullAng[m] += this.lineAng[m][n];
+  //       }
+  //     }
+  //     this.ranRot[m] = 0;
+  //   }
+  // }
 
   updateMotion(){
     for(var m = 0; m < this.lineCount; m++){
       this.lineFullAng[m] = 0;
       for(var n = 0; n < this.inputTextLine[m].length; n++){
-        this.ticker[m][n] ++;
+        var thisTicker;
 
-        if(this.ticker[m][n] < 0){
+        if(animateOn){
+          thisTicker = this.ticker[m][n];
+          this.ticker[m][n] ++;
+        } else {
+          thisTicker = scrubTicker - this.scrubDelay[m][n];
+          // this.ticker[m][n]
+        }
+
+        if(thisTicker < 0){
           this.lineAng[m][n] = this.lineAngStart[m];
           this.centerY[m][n] = this.centerYtarget;
 
-        } else if(this.ticker[m][n] < this.animWindow){
-          var tk0 = map(this.ticker[m][n], 0, this.animWindow, 0, 1);
+        } else if(thisTicker < this.animWindow){
+          var tk0 = map(thisTicker, 0, this.animWindow, 0, 1);
           this.lineAng[m][n] = map(coreEngine(tk0), 0, 1, this.lineAngStart[m], this.lineAngMax[m]);
           this.centerY[m][n] = map(coreEngine(tk0), 0, 1, this.centerYtarget, 0);
        
-        } else if(this.ticker[m][n] < this.animWindow + this.pauseWindow){
+        } else if(thisTicker < this.animWindow + this.pauseWindow){
           this.lineAng[m][n] = this.lineAngMax[m];
           this.centerY[m][n] = 0;
-        
-          // if(n == 0 && this.ticker[m][n] == this.animWindow + 1){
-          //   this.ranRotTarget[m] = random(-PI,PI);
-          // }
-
-        } else if(this.ticker[m][n] < this.animWindow * 2 + this.pauseWindow){
-          var tk0 = map(this.ticker[m][n], this.animWindow + this.pauseWindow, this.animWindow * 2 + this.pauseWindow, 0, 1);
+        } else if(thisTicker < this.animWindow * 2 + this.pauseWindow){
+          var tk0 = map(thisTicker, this.animWindow + this.pauseWindow, this.animWindow * 2 + this.pauseWindow, 0, 1);
           this.lineAng[m][n] = map(coreEngine(tk0), 0, 1, this.lineAngMax[m], this.lineAngStart[m]);
           this.centerY[m][n] = map(coreEngine(tk0), 0, 1, 0, this.centerYtarget);   
           
         } else {
           this.lineAng[m][n] = this.lineAngStart[m];
           this.centerY[m][n] = this.centerYtarget;
-        
         }
   
         // this.lineFullAng[m] = (this.inputTextLine[m].length - 1) * this.lineAng[m];
@@ -192,7 +196,12 @@ class Tapestry {
         }
       }
 
-      var randomRotTicker = this.ticker[m][0];
+      var randomRotTicker;
+      if(animateOn){
+        randomRotTicker = this.ticker[m][0];
+      } else {
+        randomRotTicker = scrubTicker - this.scrubDelay[m][0];
+      }
       if(randomRotTicker < 0){
         this.ranRot[m] = this.ranRotTarget[m];
 

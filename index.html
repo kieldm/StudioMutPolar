@@ -100,6 +100,11 @@
           <input type="checkbox" id="animateOn" name="animateOn" onclick="toggleAnimateOn()" checked>
         </div>
 
+        <div class="coupling1" id="scrubSec">
+          <div class="coupling_label"><h3>Scrub</h3></div>
+          <input type="range" min="0" max="100" value="50" id="scrub" oninput="setScrub(this.value)">
+        </div>
+
         <div class="coupling1">
           <label for="spinOn">Spin</label>
           <input type="checkbox" id="spinOn" name="spinOn" onclick="toggleSpinOn()" checked>

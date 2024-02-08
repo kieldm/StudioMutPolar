@@ -18,6 +18,8 @@ var animateOn = true;
 var spinOn = true;
 
 var delayCenter = 0;
+var scrubTicker = 0;
+var loopLength = 0;
 
 var exportSVGon = false;
 
